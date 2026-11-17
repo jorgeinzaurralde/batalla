@@ -1,0 +1,311 @@
+.org-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.org-heading .jp-page-heading {
+  flex: 1;
+}
+
+.org-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(23, 55, 71, 0.35);
+  z-index: 10;
+}
+
+.org-modal {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border: 1px solid var(--jp-border);
+  border-radius: 16px;
+  background: var(--jp-surface);
+}
+
+.org-modal h2 {
+  margin: 0 0 20px;
+}
+
+.org-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--jp-muted);
+  font-size: 14px;
+}
+
+.org-field input {
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid var(--jp-border);
+  border-radius: 8px;
+  color: var(--jp-text);
+  font: inherit;
+  font-size: 16px;
+}
+
+.org-field input:focus-visible {
+  outline: 3px solid #45bdc5;
+  outline-offset: 2px;
+}
+
+.org-modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.org-modal-actions .jp-button {
+  flex: 1;
+}
+
+.org-player-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.org-player-list li {
+  padding: 0.4rem 0;
+}
+
+.org-player-list label {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.org-player-list li {
+  padding: 0.4rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.org-card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.org-abandon-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.org-abandon-options .jp-button {
+  white-space: normal;
+}
+
+/* Ningún modal es más alto que la pantalla: si no entra, scrollea */
+.org-modal {
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+/* Modal con encabezado fijo y cuerpo scrolleable */
+.org-modal-wide {
+  display: flex;
+  flex-direction: column;
+  max-width: 560px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.org-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px 24px 16px;
+  border-bottom: 1px solid var(--jp-border);
+}
+
+.org-modal-header h2 {
+  margin: 0;
+}
+
+.org-modal-subtitle {
+  margin: 4px 0 0;
+  color: var(--jp-muted);
+  font-size: 14px;
+}
+
+.org-modal-close {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--jp-muted);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.org-modal-close:hover {
+  background: var(--jp-soft);
+  color: var(--jp-text);
+}
+
+.org-modal-close:focus-visible,
+.org-link-button:focus-visible {
+  outline: 3px solid #45bdc5;
+  outline-offset: 2px;
+}
+
+.org-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 18px 24px 24px;
+  overflow-y: auto;
+}
+
+.org-section h3 {
+  margin: 0 0 10px;
+  color: var(--jp-muted);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.org-section .jp-placeholder {
+  margin: 0;
+}
+
+.org-inline-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.org-inline-form .org-field {
+  flex: 1;
+  min-width: 0;
+}
+
+.org-inline-form .jp-button {
+  min-height: 46px;
+}
+
+.org-match-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--jp-border);
+  border-radius: 10px;
+}
+
+.org-match-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+}
+
+.org-match-list li + li {
+  border-top: 1px solid var(--jp-border);
+}
+
+.org-match-players {
+  flex: 1;
+  min-width: 0;
+}
+
+.org-match-players small {
+  color: var(--jp-muted);
+}
+
+.org-chip {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--jp-soft);
+  color: var(--jp-accent);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.org-chip-done {
+  background: var(--jp-background);
+  color: var(--jp-text);
+}
+
+.org-link-button {
+  padding: 4px 6px;
+  border: 0;
+  background: transparent;
+  color: #b9414c;
+  font: inherit;
+  font-size: 14px;
+  text-decoration: underline;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.org-field select {
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid var(--jp-border);
+  border-radius: 8px;
+  color: var(--jp-text);
+  background: var(--jp-surface);
+  font: inherit;
+  font-size: 16px;
+}
+
+.org-field select:focus-visible {
+  outline: 3px solid #45bdc5;
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .org-heading {
+    flex-direction: column;
+  }
+
+  .org-inline-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .org-match-list li {
+    flex-wrap: wrap;
+  }
+}
+
+.org-link-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tarjetas de torneo: nombre, estado y acciones en columnas fijas, para
+   que la etiqueta de estado quede alineada aunque los nombres varíen. */
+.org-tournament-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px auto;
+  align-items: center;
+}
+
+.org-tournament-card > .jp-badge {
+  justify-self: start;
+}
+
+@media (max-width: 1100px) {
+  .org-tournament-card {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}

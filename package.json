@@ -1,0 +1,17 @@
+{
+  "description": "DWYM Project - 2026sem2",
+  "license": "UNLICENSED",
+  "name": "dwym-project-2026sem2",
+  "private": true,
+  "scripts": {
+    "docs:gen": "pandoc docs/DWYM-Proyecto-2026sem2.md -s -o docs/DWYM-Proyecto-2026sem2.pdf",
+    "format": "prettier --write \"packages/web/{src,tests}/**/*.{js,jsx,css}\" \"packages/mobile/{app,common,tests}/**/*.{js,jsx}\"",
+    "test": "npm test -w packages/web -w packages/mobile"
+  },
+  "workspaces": [
+    "packages/api",
+    "packages/mobile",
+    "packages/web"
+  ],
+  "version": "0.1.0"
+}

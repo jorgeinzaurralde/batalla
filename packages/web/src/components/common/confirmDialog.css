@@ -1,0 +1,48 @@
+/* Diálogo de confirmación: va por encima de cualquier otro modal. */
+.confirm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(23, 55, 71, 0.55);
+}
+
+.confirm-dialog {
+  width: 100%;
+  max-width: 380px;
+  padding: 24px;
+  border: 3px solid #173747;
+  background: #fff;
+  box-shadow: 8px 8px 0 #173747;
+  color: #173747;
+}
+
+.confirm-dialog h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.confirm-dialog p {
+  margin: 0 0 22px;
+  line-height: 1.5;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.confirm-actions .jp-button {
+  flex: 1;
+}
+
+.jp-button.confirm-danger {
+  background: #b9414c;
+}
+
+.jp-button.confirm-danger:hover:not(:disabled) {
+  background: #9c3540;
+}

@@ -1,0 +1,448 @@
+:root {
+  --px-ink: #173747;
+  --px-accent: #07838b;
+  --px-accent-dark: #055c62;
+  --px-gold: #f2c14e;
+  --px-paper: #f3f7f8;
+  --px-danger: #b9414c;
+  --px-font-title: 'Press Start 2P', 'Courier New', monospace;
+  --px-font-body: 'Pixelify Sans', 'Courier New', monospace;
+}
+
+.jp-app,
+.bn-page {
+  --jp-border: #173747;
+  font-family: var(--px-font-body);
+  font-size: 17px;
+  background-color: var(--px-paper);
+  background-image:
+    linear-gradient(rgba(23, 55, 71, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 55, 71, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Fondo celeste con la cuadrícula suave, como agua de tablero */
+.jp-main,
+.bn-page {
+  background-color: #dcf0f5;
+  background-image:
+    linear-gradient(rgba(7, 131, 139, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7, 131, 139, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* El texto que va directo sobre el fondo, con un poco de contraste extra */
+.jp-page-heading p,
+.jp-filter label {
+  color: var(--px-ink);
+}
+
+.jp-app :focus-visible,
+.bn-page :focus-visible {
+  outline: 3px dashed var(--px-gold);
+  outline-offset: 3px;
+}
+
+.jp-brand,
+.bn-brand,
+.jp-page-heading h1,
+.admin-users .page-heading h1,
+.bn-login-title {
+  font-family: var(--px-font-title);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+
+.jp-brand {
+  font-size: 17px;
+  text-shadow: 2px 2px 0 var(--px-gold);
+}
+
+.jp-brand > span:first-child {
+  font-size: 24px;
+}
+
+.jp-page-heading h1,
+.admin-users .page-heading h1 {
+  font-size: clamp(20px, 2.4vw, 30px);
+  text-shadow: 3px 3px 0 rgba(7, 131, 139, 0.25);
+}
+
+.jp-app h2,
+.admin-users .card h2 {
+  font-family: var(--px-font-body);
+  font-weight: 700;
+}
+
+.jp-nav-label,
+.jp-topbar > span,
+.jp-footer {
+  font-family: var(--px-font-title);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+/* Menú lateral: estilo menú de juego */
+
+.jp-sidebar,
+.jp-topbar {
+  border-color: var(--px-ink);
+  border-width: 3px;
+}
+
+.jp-nav a {
+  position: relative;
+  border: 3px solid transparent;
+  border-radius: 0;
+  font-size: 17px;
+}
+
+.jp-nav a:hover {
+  border-color: var(--px-ink);
+  background: var(--jp-soft);
+  color: var(--px-ink);
+}
+
+.jp-nav a.active {
+  border-color: var(--px-ink);
+  background: var(--px-ink);
+  color: #fff;
+  box-shadow: 3px 3px 0 var(--px-gold);
+}
+
+/* Flechita de selección, como en los menús de los juegos */
+.jp-nav a.active::before {
+  content: '▶';
+  margin-right: 8px;
+  color: var(--px-gold);
+  font-size: 12px;
+}
+
+.jp-user {
+  border-top: 3px dashed var(--px-ink);
+}
+
+.jp-logout {
+  font-family: var(--px-font-body);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.jp-logout:hover {
+  color: var(--px-danger);
+}
+
+/* Tarjetas y paneles: bordes gruesos y sombra dura */
+
+.jp-card,
+.admin-users .card,
+.bn-login-card {
+  border: 3px solid var(--px-ink);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 var(--px-ink);
+}
+
+.jp-hero,
+.bn-presentation {
+  border: 3px solid var(--px-ink);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 var(--px-accent);
+}
+
+/* Tarjeta dentro de otra tarjeta: se aplana y queda como una fila de lista */
+.jp-card .jp-card {
+  padding: 18px 0;
+  border: 0;
+  border-bottom: 2px dashed var(--px-ink);
+  box-shadow: none;
+  background: transparent;
+}
+
+.jp-card .jp-card:last-of-type {
+  border-bottom: 0;
+}
+
+.jp-card > .jp-text-link {
+  display: inline-block;
+  margin-top: 16px;
+}
+
+.jp-list-item + .jp-list-item {
+  border-top: 2px dashed var(--jp-border);
+}
+
+/* Botones: se "hunden" al apretarlos */
+
+.jp-button,
+.bn-button,
+.admin-users .btn {
+  border: 3px solid var(--px-ink);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--px-ink);
+  font-family: var(--px-font-body);
+  font-size: 16px;
+  font-weight: 600;
+  transition:
+    transform 0.06s steps(2),
+    box-shadow 0.06s steps(2);
+}
+
+.jp-button:hover:not(:disabled),
+.bn-button:hover,
+.admin-users .btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--px-ink);
+}
+
+.jp-button:active:not(:disabled),
+.bn-button:active,
+.admin-users .btn:active:not(:disabled) {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--px-ink);
+}
+
+.jp-button:disabled,
+.admin-users .btn:disabled {
+  box-shadow: 2px 2px 0 var(--px-ink);
+  filter: grayscale(0.6);
+}
+
+.jp-button-secondary,
+.admin-users .btn-outline {
+  border-color: var(--px-ink);
+  background: #fff;
+}
+
+.admin-users .btn-ghost {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.admin-users .btn-small {
+  font-size: 14px;
+  box-shadow: 3px 3px 0 var(--px-ink);
+}
+
+.admin-users .danger {
+  border-color: var(--px-danger);
+  box-shadow: 3px 3px 0 var(--px-danger);
+}
+
+.jp-text-link {
+  font-weight: 600;
+}
+
+.jp-back::first-letter {
+  color: var(--px-gold);
+}
+
+/* Etiquetas de estado */
+
+.jp-badge,
+.org-chip {
+  border: 2px solid currentColor;
+  border-radius: 0;
+  font-family: var(--px-font-body);
+  font-weight: 600;
+}
+
+/* Campos de formulario */
+
+.jp-app input,
+.jp-app select,
+.bn-field input {
+  border: 3px solid var(--px-ink) !important;
+  border-radius: 0 !important;
+  box-shadow: inset 3px 3px 0 rgba(23, 55, 71, 0.12);
+  font-family: var(--px-font-body);
+  font-size: 17px;
+}
+
+.jp-app input[type='checkbox'] {
+  box-shadow: none;
+  accent-color: var(--px-accent);
+}
+
+/* Mensajes */
+
+.jp-notice,
+.admin-users .alert,
+.jp-waiting {
+  border: 3px solid var(--px-ink);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--px-accent);
+}
+
+.jp-error,
+.bn-error {
+  font-weight: 600;
+}
+
+/* Tableros: celdas nítidas, como píxeles */
+
+.jp-board,
+.bn-board {
+  border: 3px solid var(--px-ink);
+  box-shadow: 5px 5px 0 var(--px-ink);
+  background: #fff;
+}
+
+.jp-coordinate {
+  font-family: var(--px-font-title);
+  font-size: 8px;
+}
+
+.jp-cell {
+  font-family: var(--px-font-title);
+  font-size: clamp(9px, 1.1vw, 15px);
+}
+
+.jp-cell-ship {
+  background-color: #bce5e9;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.45) 25%,
+    transparent 25%
+  );
+}
+
+.jp-cell-selected {
+  box-shadow: inset 0 0 0 3px var(--px-gold);
+}
+
+button.jp-cell:hover:not(:disabled) {
+  background: var(--px-gold);
+}
+
+.jp-ship {
+  border: 3px solid var(--px-ink);
+  border-radius: 0;
+  box-shadow: 3px 3px 0 var(--px-ink);
+}
+
+.jp-ship-selected {
+  background: var(--px-gold);
+  box-shadow: 3px 3px 0 var(--px-accent);
+}
+
+.jp-ship-selected span {
+  color: var(--px-ink);
+}
+
+/* Tablas */
+
+.jp-table th,
+.admin-users th {
+  font-family: var(--px-font-title);
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.jp-table th,
+.jp-table td {
+  border-bottom: 2px dashed var(--jp-border);
+}
+
+/* Modales */
+
+.org-modal-backdrop,
+.admin-users .modal-overlay {
+  background: rgba(23, 55, 71, 0.55);
+}
+
+.org-modal,
+.admin-users .modal {
+  border: 3px solid var(--px-ink);
+  border-radius: 0;
+  box-shadow: 8px 8px 0 var(--px-ink);
+}
+
+.org-modal h2,
+.org-modal-header h2 {
+  font-family: var(--px-font-title);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.org-modal-header {
+  border-bottom: 3px solid var(--px-ink);
+  background: var(--jp-soft);
+}
+
+.org-modal-close {
+  border: 3px solid var(--px-ink);
+  border-radius: 0;
+  box-shadow: 2px 2px 0 var(--px-ink);
+  background: #fff;
+  color: var(--px-ink);
+  font-family: var(--px-font-body);
+}
+
+.org-modal-close:hover:not(:disabled) {
+  background: var(--px-danger);
+  color: #fff;
+}
+
+.org-section h3 {
+  font-family: var(--px-font-title);
+  font-size: 9px;
+  color: var(--px-accent);
+}
+
+.org-match-list {
+  border: 3px solid var(--px-ink);
+  border-radius: 0;
+}
+
+.org-match-list li + li {
+  border-top: 2px dashed var(--px-ink);
+}
+
+/* Login */
+
+.bn-brand {
+  font-size: clamp(15px, 1.6vw, 19px);
+  text-shadow: 2px 2px 0 var(--px-gold);
+}
+
+.bn-login-title {
+  font-size: clamp(16px, 1.8vw, 22px);
+}
+
+.bn-button {
+  justify-content: center;
+}
+
+/* Respetar a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .jp-button,
+  .bn-button,
+  .admin-users .btn {
+    transition: none;
+  }
+}
+
+/* Celular: sombras más chicas para que no se desborde */
+@media (max-width: 760px) {
+  .jp-card,
+  .admin-users .card,
+  .bn-login-card {
+    box-shadow: 4px 4px 0 var(--px-ink);
+  }
+
+  .jp-page-heading h1,
+  .admin-users .page-heading h1 {
+    font-size: 18px;
+  }
+
+  .jp-nav a {
+    font-size: 15px;
+  }
+
+  .jp-nav a.active::before {
+    display: none;
+  }
+}

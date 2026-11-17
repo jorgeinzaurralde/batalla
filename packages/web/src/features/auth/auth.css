@@ -1,0 +1,472 @@
+/* estilos gral */
+
+.bn-page,
+.bn-page *,
+.bn-page *::before,
+.bn-page *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.bn-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  align-items: center;
+  padding: clamp(16px, 3vh, 32px);
+  background: #f3f7f8;
+  color: #173747;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bn-login-layout {
+  display: grid;
+  grid-template-columns: 1.07fr 1fr;
+  align-items: center;
+  gap: clamp(20px, 3vw, 36px);
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Panel */
+
+.bn-presentation {
+  min-width: 0;
+  padding: clamp(24px, 4vh, 40px);
+  border-radius: 24px;
+  background: #e4f4f4;
+}
+
+.bn-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #008894;
+  font-size: clamp(23px, 2.3vw, 28px);
+  font-weight: 600;
+}
+
+.bn-brand-symbol {
+  flex-shrink: 0;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.bn-presentation-title {
+  margin: clamp(24px, 5vh, 48px) 0 20px;
+  font-size: clamp(36px, 3.5vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.bn-presentation-description {
+  margin: 0;
+  color: #648294;
+  font-size: clamp(16px, 1.7vw, 19px);
+  line-height: 1.4;
+}
+
+/* Tablero decoracion */
+
+.bn-board {
+  display: grid;
+  grid-template-columns: 24px repeat(10, minmax(0, 1fr));
+  width: min(230px, 30vh);
+  max-width: 100%;
+  margin: 24px auto 0;
+}
+
+.bn-board-row {
+  display: contents;
+}
+
+.bn-coordinate {
+  display: grid;
+  place-items: center;
+  min-height: 20px;
+  color: #648294;
+  font-size: 11px;
+}
+
+.bn-cell {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-right: 1px solid #d8e5eb;
+  border-bottom: 1px solid #d8e5eb;
+  background: #fff;
+}
+
+.bn-board-row:nth-child(12) .bn-cell {
+  border-top: 1px solid #d8e5eb;
+}
+
+.bn-board-row .bn-cell:nth-child(2) {
+  border-left: 1px solid #d8e5eb;
+}
+
+.bn-cell-ship {
+  background: #bce5e9;
+}
+
+.bn-cell-hit {
+  color: #e57514;
+  font-size: 21px;
+  line-height: 1;
+}
+
+.bn-cell-water {
+  color: #648294;
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* card del login */
+
+.bn-login-card {
+  min-width: 0;
+  padding: clamp(24px, 4vh, 36px);
+  border: 1px solid #d8e5eb;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.bn-welcome {
+  margin: 0 0 24px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.bn-login-title {
+  margin: 0 0 28px;
+  font-size: clamp(27px, 2.6vw, 32px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.bn-form {
+  width: 100%;
+}
+
+.bn-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bn-field + .bn-field {
+  margin-top: 22px;
+}
+
+.bn-field label {
+  color: #648294;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.bn-field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #d8e5eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #173747;
+  font: inherit;
+  font-size: 16px;
+}
+
+.bn-field input::placeholder {
+  color: #648294;
+  opacity: 1;
+}
+
+.bn-field input:focus-visible,
+.bn-button:focus-visible {
+  outline: 3px solid #45bdc5;
+  outline-offset: 3px;
+}
+
+.bn-error {
+  min-height: 20px;
+  margin: 10px 0 12px;
+  color: #bc3030;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.bn-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 9px;
+  background: #07838b;
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bn-button:hover {
+  background: #066f76;
+}
+
+.bn-account-note {
+  margin: 24px 0 0;
+  color: #648294;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Pantallas inicial por rol */
+
+.bn-dashboard {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #d8e5eb;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.bn-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 28px;
+  border-bottom: 1px solid #d8e5eb;
+}
+
+.bn-logout-button {
+  justify-content: center;
+  width: auto;
+}
+
+.bn-dashboard-content {
+  padding: 32px 28px;
+}
+
+.bn-role-badge {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: #e4f4f4;
+  color: #07838b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bn-dashboard-content h1 {
+  margin: 20px 0;
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.2;
+}
+
+.bn-dashboard-content p {
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+.bn-dashboard-note {
+  margin-top: 24px;
+  color: #648294;
+}
+
+/* responsive */
+
+@media (min-width: 900px) and (max-height: 740px) {
+  .bn-page {
+    padding: 16px;
+  }
+
+  .bn-presentation,
+  .bn-login-card {
+    padding: 24px;
+  }
+
+  .bn-presentation-title {
+    margin: 24px 0 16px;
+    font-size: 38px;
+  }
+
+  .bn-board {
+    width: 180px;
+    margin-top: 18px;
+  }
+
+  .bn-welcome {
+    margin-bottom: 18px;
+  }
+
+  .bn-login-title {
+    margin-bottom: 22px;
+  }
+
+  .bn-account-note {
+    margin-top: 18px;
+  }
+}
+
+@media (min-width: 900px) and (max-height: 560px) {
+  .bn-board {
+    display: none;
+  }
+
+  .bn-presentation-title {
+    font-size: 34px;
+  }
+
+  .bn-login-card {
+    padding: 20px;
+  }
+
+  .bn-welcome {
+    margin-bottom: 12px;
+  }
+
+  .bn-login-title {
+    margin-bottom: 18px;
+    font-size: 27px;
+  }
+
+  .bn-field + .bn-field {
+    margin-top: 16px;
+  }
+
+  .bn-account-note {
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 899px) {
+  .bn-page {
+    padding: 16px;
+  }
+
+  .bn-login-layout {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    gap: 16px;
+  }
+
+  .bn-presentation {
+    padding: 20px 24px;
+    border-radius: 20px;
+  }
+
+  .bn-brand {
+    font-size: 24px;
+  }
+
+  .bn-presentation-title {
+    margin: 16px 0 10px;
+    font-size: 30px;
+  }
+
+  .bn-presentation-description {
+    font-size: 16px;
+  }
+
+  .bn-presentation-description br {
+    display: none;
+  }
+
+  .bn-board {
+    display: none;
+  }
+
+  .bn-login-card {
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .bn-welcome {
+    margin-bottom: 16px;
+    font-size: 17px;
+  }
+
+  .bn-login-title {
+    margin-bottom: 24px;
+    font-size: 28px;
+  }
+
+  .bn-dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .bn-logout-button {
+    width: 100%;
+  }
+
+  .bn-dashboard-content {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 899px) and (max-height: 760px) {
+  .bn-presentation {
+    padding: 16px 24px;
+  }
+
+  .bn-presentation-title,
+  .bn-presentation-description {
+    display: none;
+  }
+
+  .bn-login-card {
+    padding: 20px 24px;
+  }
+
+  .bn-welcome {
+    margin-bottom: 12px;
+  }
+
+  .bn-login-title {
+    margin-bottom: 20px;
+  }
+
+  .bn-field + .bn-field {
+    margin-top: 18px;
+  }
+
+  .bn-account-note {
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .bn-page {
+    padding: 12px;
+  }
+
+  .bn-presentation,
+  .bn-login-card {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .bn-login-title {
+    font-size: 25px;
+  }
+
+  .bn-brand {
+    font-size: 22px;
+  }
+}

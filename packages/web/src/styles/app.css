@@ -1,0 +1,850 @@
+.jp-app,
+.jp-app *,
+.jp-app *::before,
+.jp-app *::after {
+  box-sizing: border-box;
+}
+
+.jp-app {
+  --jp-background: #f3f7f8;
+  --jp-surface: #ffffff;
+  --jp-text: #173747;
+  --jp-muted: #64808e;
+  --jp-accent: #07838b;
+  --jp-soft: #e4f4f4;
+  --jp-border: #dce8ed;
+
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--jp-background);
+  color: var(--jp-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.jp-app a {
+  color: inherit;
+}
+
+.jp-app button,
+.jp-app select {
+  font: inherit;
+}
+
+.jp-app button,
+.jp-app a,
+.jp-app select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.jp-app :focus-visible {
+  outline: 3px solid #39b9c2;
+  outline-offset: 3px;
+}
+
+/* Menú lateral */
+
+.jp-sidebar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  padding: 30px 20px;
+  overflow-y: auto;
+  border-right: 1px solid var(--jp-border);
+  background: var(--jp-surface);
+}
+
+.jp-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--jp-accent) !important;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.jp-brand > span:first-child {
+  flex-shrink: 0;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.jp-nav-label {
+  margin: 48px 10px 18px;
+  color: var(--jp-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.jp-nav {
+  display: grid;
+  gap: 8px;
+}
+
+.jp-nav a {
+  padding: 16px 18px;
+  border-radius: 12px;
+  color: var(--jp-muted);
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.jp-nav a:hover,
+.jp-nav a.active {
+  background: var(--jp-soft);
+  color: var(--jp-accent);
+}
+
+.jp-user {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+  padding: 24px 10px 0;
+  border-top: 1px solid var(--jp-border);
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+
+.jp-user > span {
+  color: var(--jp-muted);
+}
+
+.jp-logout {
+  justify-self: start;
+  margin-top: 12px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--jp-muted);
+  cursor: pointer;
+}
+
+.jp-logout:hover {
+  color: var(--jp-accent);
+}
+
+/* Estructura principal */
+
+.jp-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.jp-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 76px;
+  padding: 20px 32px;
+  border-bottom: 1px solid var(--jp-border);
+  background: var(--jp-surface);
+}
+
+.jp-topbar > span {
+  color: var(--jp-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.jp-topbar > strong {
+  color: var(--jp-accent);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.jp-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.jp-footer {
+  padding: 20px 32px;
+  color: var(--jp-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+/* Títulos y textos */
+
+.jp-page-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.jp-page-heading h1 {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+}
+
+.jp-page-heading p {
+  margin: 12px 0 0;
+  color: var(--jp-muted);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.jp-app h2 {
+  margin: 0 0 18px;
+  font-size: 23px;
+  line-height: 1.25;
+}
+
+.jp-app h3 {
+  margin: 0 0 10px;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.jp-app p {
+  line-height: 1.5;
+}
+
+.jp-placeholder {
+  color: var(--jp-muted);
+  font-size: 14px;
+}
+
+.jp-text-accent {
+  color: var(--jp-accent);
+}
+
+.jp-text-hit {
+  color: #b85b14;
+}
+
+.jp-text-sunk {
+  color: #b9414c;
+}
+
+/* Tarjetas y distribución */
+
+.jp-card {
+  min-width: 0;
+  padding: 26px;
+  border: 1px solid var(--jp-border);
+  border-radius: 24px;
+  background: var(--jp-surface);
+}
+
+.jp-content > .jp-card + .jp-card,
+.jp-content > .jp-card + .jp-two-columns,
+.jp-content > .jp-two-columns + .jp-card {
+  margin-top: 24px;
+}
+
+.jp-stack {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+  min-width: 0;
+}
+
+.jp-two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 24px;
+}
+
+.jp-game-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+}
+
+.jp-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding: 30px;
+  border-radius: 26px;
+  background: var(--jp-soft);
+}
+
+.jp-hero h2 {
+  font-size: clamp(24px, 2.6vw, 34px);
+}
+
+.jp-hero p {
+  color: var(--jp-muted);
+}
+
+.jp-hero p:first-child {
+  color: var(--jp-accent);
+  font-size: 13px;
+}
+
+.jp-match-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.jp-match-card > div {
+  min-width: 0;
+}
+
+.jp-list-item {
+  padding: 22px 0;
+}
+
+.jp-list-item + .jp-list-item {
+  border-top: 1px solid var(--jp-border);
+}
+
+.jp-list-item:last-child {
+  padding-bottom: 0;
+}
+
+.jp-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Botones, enlaces y filtros */
+
+.jp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--jp-accent);
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.jp-button:hover:not(:disabled) {
+  background: #066d75;
+}
+
+.jp-button-secondary {
+  border-color: var(--jp-border);
+  background: #fff;
+  color: var(--jp-text) !important;
+}
+
+.jp-button-secondary:hover:not(:disabled) {
+  background: var(--jp-soft);
+}
+
+.jp-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.jp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.jp-actions > .jp-button {
+  flex: 1;
+}
+
+.jp-full-width {
+  width: 100%;
+}
+
+.jp-reset {
+  margin-top: 16px;
+}
+
+.jp-text-link {
+  color: var(--jp-accent) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.jp-back {
+  display: inline-block;
+  margin-bottom: 22px;
+  font-size: 14px;
+}
+
+.jp-badge {
+  display: inline-block;
+  padding: 9px 14px;
+  border-radius: 10px;
+  background: var(--jp-soft);
+  color: var(--jp-accent);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.jp-filter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.jp-filter label {
+  color: var(--jp-muted);
+  font-size: 14px;
+}
+
+.jp-filter select {
+  max-width: 100%;
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid var(--jp-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--jp-text);
+}
+
+/* Mensajes */
+
+.jp-notice {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  border: 1px solid #b5dfe3;
+  border-radius: 12px;
+  background: var(--jp-soft);
+}
+
+.jp-notice p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.jp-notice button {
+  flex-shrink: 0;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  color: var(--jp-accent);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.jp-error {
+  min-height: 20px;
+  color: #b52b36;
+  font-size: 14px;
+}
+
+.jp-waiting {
+  margin: 16px 0 0;
+  padding: 14px;
+  border: 1px solid var(--jp-border);
+  border-radius: 10px;
+  color: var(--jp-muted);
+}
+
+/* Tableros */
+
+.jp-board {
+  display: grid;
+  grid-template-columns: 20px repeat(var(--jp-board-width), minmax(0, 1fr));
+  width: 100%;
+  max-width: 440px;
+  margin: 22px auto;
+}
+
+.jp-board-row {
+  display: contents;
+}
+
+.jp-coordinate {
+  display: grid;
+  place-items: center;
+  min-height: 24px;
+  color: var(--jp-muted);
+  font-size: 11px;
+}
+
+.jp-cell {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-right: 1px solid var(--jp-border);
+  border-bottom: 1px solid var(--jp-border);
+  border-radius: 0;
+  background: #fff;
+  color: var(--jp-text);
+  font-size: clamp(12px, 1.5vw, 21px);
+  line-height: 1;
+}
+
+.jp-board-row:nth-child(12) .jp-cell {
+  border-top: 1px solid var(--jp-border);
+}
+
+.jp-board-row .jp-cell:nth-child(2) {
+  border-left: 1px solid var(--jp-border);
+}
+
+button.jp-cell:not(:disabled) {
+  cursor: pointer;
+}
+
+button.jp-cell:hover:not(:disabled) {
+  background: #e4f4f4;
+}
+
+button.jp-cell:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.jp-cell-ship {
+  background: #bce5e9;
+}
+
+.jp-cell-water {
+  background: #f3f7f8;
+  color: var(--jp-muted);
+}
+
+.jp-cell-hit {
+  background: #fff1df;
+  color: #b85b14;
+}
+
+.jp-cell-sunk {
+  background: #f5d3d6;
+  color: #b9414c;
+}
+
+.jp-cell-pending {
+  background: #f5f0de;
+  color: #7a641b;
+}
+
+.jp-cell-selected {
+  box-shadow: inset 0 0 0 2px var(--jp-accent);
+  background: var(--jp-soft);
+}
+
+.jp-legend {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: var(--jp-muted);
+  font-size: 13px;
+}
+
+/* Selección de barcos */
+
+.jp-ship-list {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0 24px;
+}
+
+.jp-ship {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--jp-border);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--jp-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.jp-ship span {
+  color: var(--jp-accent);
+  font-size: 13px;
+}
+
+.jp-ship-selected {
+  border-color: var(--jp-accent);
+  background: var(--jp-soft);
+}
+
+/* Disparos e historial */
+
+.jp-shot-list {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.jp-shot-list li {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--jp-border);
+  font-size: 14px;
+}
+
+.jp-shot-list li span {
+  color: var(--jp-muted);
+}
+
+.jp-table-wrapper {
+  overflow-x: auto;
+}
+
+.jp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.jp-table th,
+.jp-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--jp-border);
+  text-align: left;
+  line-height: 1.5;
+}
+
+.jp-table th {
+  color: var(--jp-muted);
+  font-weight: 500;
+}
+
+.jp-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Tablet */
+
+@media (max-width: 1100px) {
+  .jp-app {
+    grid-template-columns: 190px minmax(0, 1fr);
+  }
+
+  .jp-sidebar {
+    padding: 24px 14px;
+  }
+
+  .jp-brand {
+    font-size: 23px;
+  }
+
+  .jp-content {
+    padding: 24px;
+  }
+
+  .jp-card {
+    padding: 22px;
+  }
+
+  .jp-game-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .jp-game-layout > .jp-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .jp-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .jp-match-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Celular */
+
+@media (max-width: 760px) {
+  .jp-app {
+    grid-template-columns: 1fr;
+  }
+
+  .jp-sidebar {
+    position: static;
+    height: auto;
+    padding: 18px;
+    overflow: visible;
+    border-right: 0;
+    border-bottom: 1px solid var(--jp-border);
+  }
+
+  .jp-brand {
+    align-items: center;
+    font-size: 24px;
+  }
+
+  .jp-nav-label {
+    display: none;
+  }
+
+  .jp-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .jp-nav a {
+    padding: 12px 8px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .jp-user {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px 16px;
+    margin-top: 16px;
+    padding: 14px 0 0;
+    font-size: 12px;
+  }
+
+  .jp-user > strong {
+    grid-column: 1;
+  }
+
+  .jp-user > span {
+    grid-column: 1;
+  }
+
+  .jp-logout {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 0;
+  }
+
+  .jp-topbar {
+    display: none;
+  }
+
+  .jp-content {
+    padding: 24px 16px;
+  }
+
+  .jp-page-heading {
+    flex-direction: column;
+    margin-bottom: 24px;
+  }
+
+  .jp-page-heading h1 {
+    font-size: 30px;
+  }
+
+  .jp-page-heading p {
+    font-size: 15px;
+  }
+
+  .jp-two-columns,
+  .jp-game-layout,
+  .jp-game-layout > .jp-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .jp-card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .jp-hero {
+    padding: 24px;
+    border-radius: 22px;
+  }
+
+  .jp-hero > .jp-button,
+  .jp-match-card > .jp-button {
+    width: 100%;
+  }
+
+  .jp-app h2 {
+    font-size: 21px;
+  }
+
+  .jp-cell {
+    font-size: 16px;
+  }
+
+  .jp-footer {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .jp-content {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .jp-card {
+    padding: 14px;
+  }
+
+  .jp-brand {
+    font-size: 22px;
+  }
+
+  .jp-board {
+    grid-template-columns: 20px repeat(var(--jp-board-width), minmax(0, 1fr));
+  }
+
+  .jp-coordinate {
+    font-size: 10px;
+  }
+
+  .jp-actions {
+    flex-direction: column;
+  }
+}
+/* Agrupa las acciones para bloquearlas mientras se guarda. */
+.jp-page-content {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
