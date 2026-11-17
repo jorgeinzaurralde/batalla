@@ -5,17 +5,21 @@ import PageTitle from '../../../components/common/PageTitle';
 export default function PlayerMatches({ matches }) {
   const [filter, setFilter] = useState('all');
 
-  const visibleMatches = matches.filter((match) => {
-    if (filter === 'active') {
-      return match.status !== 'finished';
-    }
+  //1. Nuevo estado para el orden (requerimiento 2):
+  const [order, setOrder] = useState('newest');
 
-    if (filter === 'finished') {
-      return match.status === 'finished';
-    }
-
-    return true;
+  //2. Filtrar primero y ordenar después (requerimientos 3, 4 y 5):
+  const visibleMatches = matches
+    .filter((match) => {
+      if (filter === 'active') return match.status !== 'finished';
+      if (filter === 'finished') return match.status === 'finished';
+      return true;
+    })
+    .sort((a, b) => {
+      const diff = new Date(b.createdAt) - new Date(a.createdAt);
+      return order === 'newest' ? diff : -diff;
   });
+
 
   return (
     <>
@@ -36,6 +40,17 @@ export default function PlayerMatches({ matches }) {
           <option value="active">Sin terminar</option>
           <option value="finished">Terminadas</option>
         </select>
+
+        <label htmlFor="jp-match-order">Ordenar</label>
+        <select
+          id="jp-match-order"
+          value={order}
+          onChange={(event) => setOrder(event.target.value)}
+        >
+          <option value="newest">Más recientes</option>
+          <option value="oldest">Más antiguas</option>
+        </select>
+
       </div>
 
       <div className="jp-stack">
