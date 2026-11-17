@@ -42,7 +42,10 @@ export default function PlayerHome({ data, onInvitationResponse }) {
 
       <div className="jp-two-columns">
         <section className="jp-card">
-          <h2>Invitaciones</h2>
+          <h2>Invitaciones {'  '}
+            <span className="jp-badge">{invitations.length}</span>
+          </h2>
+
 
           {invitations.length === 0 && <p>No tenés invitaciones pendientes.</p>}
 

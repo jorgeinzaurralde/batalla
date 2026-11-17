@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MatchCard from '../components/MatchCard';
 import PageTitle from '../../../components/common/PageTitle';
 
-export default function PlayerMatches({ matches }) {
+export default function PlayerMatches({ services }) {
   const [filter, setFilter] = useState('all');
+  const [matches, setMatches] = useState([]);
+  const [status, setStatus] = useState('loading'); // 'loading' | 'success' | 'error'
+  const [error, setError] = useState('');
+  const [attempt, setAttempt] = useState(0);
 
   //1. Nuevo estado para el orden (requerimiento 2):
   const [order, setOrder] = useState('newest');
@@ -20,6 +24,38 @@ export default function PlayerMatches({ matches }) {
       return order === 'newest' ? diff : -diff;
   });
 
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadMatches() {
+      setStatus('loading');
+      setError('');
+
+      try {
+        const result = await services.matches.getMatches();
+
+        if (!cancelled) {
+          setMatches(result);
+          setStatus('success');
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setError(error.message);
+          setStatus('error');
+        }
+      }
+    }
+
+    loadMatches();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [services, attempt]);
+
+  function retry() {
+    setAttempt((current) => current + 1);
+  }
 
   return (
     <>
@@ -28,6 +64,19 @@ export default function PlayerMatches({ matches }) {
         description="Continuá jugando o consultá tus resultados."
       />
 
+            {status === 'loading' && <p role="status">Cargando partidas...</p>}
+
+      {status === 'error' && (
+        <section className="jp-card" role="alert">
+          <p className="jp-error">No se pudieron cargar las partidas. {error}</p>
+          <button className="jp-button" type="button" onClick={retry}>
+            Reintentar
+          </button>
+        </section>
+      )}
+
+      {status === 'success' && (
+        <>
       <div className="jp-filter">
         <label htmlFor="jp-match-filter">Mostrar</label>
 
@@ -53,17 +102,23 @@ export default function PlayerMatches({ matches }) {
 
       </div>
 
-      <div className="jp-stack">
-        {visibleMatches.length === 0 ? (
-          <section className="jp-card">
-            <p>No hay partidas para este filtro.</p>
-          </section>
-        ) : (
-          visibleMatches.map((match) => (
-            <MatchCard key={match.id} match={match} />
-          ))
-        )}
-      </div>
+          <div className="jp-stack">
+            {matches.length === 0 ? (
+              <section className="jp-card">
+                <p>Todavía no tenés partidas.</p>
+              </section>
+            ) : visibleMatches.length === 0 ? (
+              <section className="jp-card">
+                <p>No hay partidas para este filtro.</p>
+              </section>
+            ) : (
+              visibleMatches.map((match) => (
+                <MatchCard key={match.id} match={match} />
+              ))
+            )}
+          </div>
+        </>
+      )}
     </>
   );
 }

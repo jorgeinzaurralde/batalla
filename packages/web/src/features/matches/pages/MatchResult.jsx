@@ -13,9 +13,9 @@ import { getMatchPath } from '../utils/matchHelpers';
 import { coordinateLabel, sameCoordinate } from '../utils/coordinates';
 
 const resultLabels = {
-  water: 'Agua',
-  hit: 'Tocado',
-  sunk: 'Hundido',
+  water: '💧 Agua',
+  hit: '🎯 Tocado',
+  sunk: '💥 Hundido',
 };
 
 function describeMove(move) {

@@ -20,6 +20,9 @@ import OrganizerTournaments from '../features/organizers/pages/OrganizerTourname
 
 import AdminUsers from '../features/admin/pages/AdminUsers';
 
+import PlayerStatistics from '../features/player/pages/PlayerStatistics';
+
+
 // Todas las rutas de la aplicación con sesión iniciada (bajo /jugador).
 // Para sumar una pantalla: agregar su <Route> en la sección de su rol y,
 // si va en el menú, su entrada en navigation.js.
@@ -51,7 +54,13 @@ export default function AppRoutes({
           }
         />
 
-        <Route path="partidas" element={<PlayerMatches matches={matches} />} />
+        <Route
+          path="estadisticas"
+          element={<PlayerStatistics matches={matches} />}
+        />
+
+
+        <Route path="partidas" element={<PlayerMatches services={services} />} />
 
         <Route
           path="partidas/:matchId/preparacion"

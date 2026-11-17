@@ -14,9 +14,9 @@ export default function ShotList({ shots, emptyText }) {
 
           <span>
             {{
-              water: 'Agua',
-              hit: 'Tocado',
-              sunk: 'Hundido',
+              water: '💧 Agua',
+              hit: '🎯 Tocado',
+              sunk: '💥 Hundido',
             }[shot.result] ?? 'Sin resultado'}
           </span>
         </li>

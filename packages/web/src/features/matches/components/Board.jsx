@@ -66,9 +66,9 @@ export default function Board({
 
             const symbol = shot
               ? ({
-                  water: '•',
-                  hit: '×',
-                  sunk: '■',
+                  water: '💧',
+                  hit: '🎯',
+                  sunk: '💥',
                 }[shot.result] ?? '?')
               : '';
 
