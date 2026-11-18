@@ -309,3 +309,34 @@
     justify-items: start;
   }
 }
+
+
+/* Estado de cada invitación en "Invitar jugadores" */
+.org-invite-summary {
+  margin: 0 0 0.75rem;
+  font-size: 14px;
+  color: var(--jp-text);
+}
+
+.org-status {
+  padding: 2px 8px;
+  border: 2px solid currentColor;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.org-status-pending {
+  background: #fff4d6;
+  color: #8a6400;
+}
+
+.org-status-accepted {
+  background: #e4f4f4;
+  color: #07838b;
+}
+
+.org-status-rejected {
+  background: #f5d3d6;
+  color: #b9414c;
+}
+

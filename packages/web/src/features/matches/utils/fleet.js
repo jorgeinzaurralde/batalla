@@ -38,3 +38,39 @@ export function validatePlacement(board, fleet, shipId, cells) {
 export function isFleetComplete(board, fleet) {
   return board.ships.every((ship) => fleet?.[ship.id]?.length === ship.size);
 }
+
+//Arma una flota válida al azar. Si un barco no entra, empieza de nuevo
+export function randomFleet(board, maxAttempts = 100) {
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    const fleet = {};
+    let ok = true;
+
+    for (const ship of board.ships) {
+      let placed = false;
+
+      for (let tries = 0; tries < 200 && !placed; tries++) {
+        const orientation = Math.random() < 0.5 ? 'horizontal' : 'vertical';
+        const start = [
+          Math.floor(Math.random() * board.width),
+          Math.floor(Math.random() * board.height),
+        ];
+        const cells = buildCells(start, ship.size, orientation);
+
+        if (!validatePlacement(board, fleet, ship.id, cells)) {
+          fleet[ship.id] = cells;
+          placed = true;
+        }
+      }
+
+      if (!placed) {
+        ok = false;
+        break;
+      }
+    }
+
+    if (ok) return fleet;
+  }
+
+  return null;
+}
+

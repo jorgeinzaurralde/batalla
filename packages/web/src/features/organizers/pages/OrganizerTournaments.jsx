@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react';
 import InvitePlayersModal from '../components/InvitePlayersModal';
 import TournamentMatchesModal from '../components/TournamentMatchesModal';
 
+import ConfirmDialog from '../../../components/common/ConfirmDialog';
+import { ROLES } from '../../../app/roles';
+
+
 import PageTitle from '../../../components/common/PageTitle';
 import '../organizer.css';
 
@@ -19,12 +23,36 @@ export default function OrganizerTournaments({ services, user }) {
   const [loadError, setLoadError] = useState('');
 
   const [inviting, setInviting] = useState(null);
-  const [viewingMatches, setViewingMatches] = useState(null);
+  const [viewingMatches, setViewingMatches] = useState(null);  
 
   const [editing, setEditing] = useState(null);
   const [editName, setEditName] = useState('');
   const [editSaving, setEditSaving] = useState(false);
   const [editError, setEditError] = useState('');
+
+  const [deleting, setDeleting] = useState(null);      // torneo a confirmar
+  const [deleteBusy, setDeleteBusy] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
+
+  const canDelete = (tournament) =>
+    user.role === ROLES.admin || tournament.organisedBy === user.id;
+
+  async function handleDelete() {
+    if (deleteBusy) return;
+
+    try {
+      setDeleteBusy(true);
+      setDeleteError('');
+      await service.deleteTournament(deleting.id);
+      setTournaments((current) => current.filter((t) => t.id !== deleting.id));
+    } catch (err) {
+      setDeleteError(err.message); // el torneo queda en la lista
+    } finally {
+      setDeleteBusy(false);
+      setDeleting(null);
+    }
+  }
+
 
   function openEdit(tournament) {
     setEditing(tournament);
@@ -132,6 +160,13 @@ export default function OrganizerTournaments({ services, user }) {
         {loading && <p role="status">Cargando torneos…</p>}
         {loadError && <p className="jp-error">{loadError}</p>}
 
+        {deleteError && (
+          <p className="jp-error" role="alert">
+            {deleteError}
+          </p>
+        )}
+
+
         {!loading && !loadError && tournaments.length === 0 && (
           <section className="jp-card">
             <p>Creá un torneo para empezar a invitar jugadores.</p>
@@ -177,10 +212,22 @@ export default function OrganizerTournaments({ services, user }) {
               >
                 Partidas
               </button>
+                {canDelete(tournament) && (
+                    <button
+                      className="jp-button jp-button-secondary"
+                      type="button"
+                      onClick={() => {
+                        setDeleteError('');
+                        setDeleting(tournament);
+                      }}
+                    >
+                      Eliminar
+                    </button>
+                  )}              
             </div>
           </article>
         ))}
-      </div>
+      </div> 
 
       {formOpen && (
         <div className="org-modal-backdrop">
@@ -281,6 +328,19 @@ export default function OrganizerTournaments({ services, user }) {
           }
         />
       )}
+
+      {deleting && (
+        <ConfirmDialog
+          title="Eliminar torneo"
+          message={`Se va a eliminar «${deleting.name}». Esta acción no se puede deshacer.`}
+          confirmLabel="Eliminar"
+          busyLabel="Eliminando…"
+          busy={deleteBusy}
+          onConfirm={handleDelete}
+          onCancel={() => setDeleting(null)}
+        />
+      )}
+      
     </>
   );
 }

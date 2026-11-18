@@ -3,7 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import MissingItem from '../../../components/common/MissingItem';
 import Board from '../components/Board';
 import { getMatchPath } from '../utils/matchHelpers';
-import { buildCells, isFleetComplete, validatePlacement } from '../utils/fleet';
+import { buildCells, isFleetComplete, validatePlacement, randomFleet } from '../utils/fleet';
 import PageTitle from '../../../components/common/PageTitle';
 import Placeholder from '../../../components/common/Placeholder';
 
@@ -52,6 +52,21 @@ export default function Preparation({
     onPlaceShip(match.id, selectedShip, cells);
     setError('');
   }
+
+  function handleRandom() {
+    const fleet = randomFleet(board);
+
+    if (!fleet) {
+      setError('No se pudo ubicar la flota al azar. Probá de nuevo.');
+      return;
+    }
+
+    Object.entries(fleet).forEach(([shipId, cells]) =>
+      onPlaceShip(match.id, shipId, cells)
+    );
+    setError('');
+  }
+
 
   return (
     <>
@@ -152,6 +167,15 @@ export default function Preparation({
                 </button>
               ))}
             </div>
+            
+            <button
+              className="jp-button jp-button-secondary jp-full-width jp-reset"
+              type="button"
+              onClick={handleRandom}
+            >
+              Ubicar al azar
+            </button>
+
 
             <button
               className="jp-button jp-button-secondary jp-full-width jp-reset"

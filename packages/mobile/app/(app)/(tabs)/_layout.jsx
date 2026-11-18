@@ -28,6 +28,7 @@ export default function TabsLayout() {
       <Tabs.Screen name="home" options={{ title: 'Inicio' }} />
       <Tabs.Screen name="tournaments" options={{ title: 'Torneos' }} />
       <Tabs.Screen name="matches" options={{ title: 'Partidas' }} />
+      <Tabs.Screen name="statistics" options={{ title: 'Estadísticas' }} />
     </Tabs>
   );
 }

@@ -71,6 +71,21 @@ export function createTournamentsService(token) {
     );
   }
 
+  async function deleteTournament(tournamentId) {
+  await withMessages(
+    backend.delete(
+      `/api/tournaments/${encodeURIComponent(tournamentId)}`,
+      options
+    ),
+    {
+      400: 'No se puede eliminar el torneo: puede que ya tenga partidas jugadas.',
+      403: 'No tenés permiso para eliminar este torneo.',
+      404: 'El torneo ya no existe.',
+    }
+  );
+}
+
+
 
   return {
     getTournaments,
@@ -81,5 +96,6 @@ export function createTournamentsService(token) {
     createMatch,
     setWinner,
     renameTournament,
+    deleteTournament,
   };
 }
