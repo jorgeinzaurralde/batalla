@@ -11,6 +11,8 @@ export const NAV_ITEMS = [
   { to: `${APP_BASE}/partidas`, label: 'Partidas' },
   { to: `${APP_BASE}/torneos`, label: 'Torneos' },
   { to: `${APP_BASE}/estadisticas`, label: 'Estadísticas' },
+  { to: `${APP_BASE}/historial`, label: 'Historial' },
+
   {
     to: `${APP_BASE}/organizar`,
     label: 'Organizar torneos',

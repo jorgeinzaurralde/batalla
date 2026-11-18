@@ -22,6 +22,10 @@ import AdminUsers from '../features/admin/pages/AdminUsers';
 
 import PlayerStatistics from '../features/player/pages/PlayerStatistics';
 
+import MatchHistory from '../features/matches/pages/MatchHistory';
+import MatchHistoryList from '../features/matches/pages/MatchHistoryList';
+
+
 
 // Todas las rutas de la aplicación con sesión iniciada (bajo /jugador).
 // Para sumar una pantalla: agregar su <Route> en la sección de su rol y,
@@ -57,6 +61,12 @@ export default function AppRoutes({
         <Route
           path="estadisticas"
           element={<PlayerStatistics matches={matches} />}
+        />
+
+        <Route path="historial" element={<MatchHistoryList matches={matches} />} />
+        <Route
+          path="partidas/:matchId/historial"
+          element={<MatchHistory board={board} matches={matches} />}
         />
 
 

@@ -5,6 +5,9 @@ import { coordinateLabel } from '../player/coordinates';
 import { markSunkShips } from '../player/sunkShips';
 import { colors, fonts, shadow } from '../theme';
 
+import { SHOT_ICON } from '../shotIcons';
+
+
 export const BOARD_GUTTER = 20;
 
 const SHOT_TEXT = {
@@ -140,19 +143,15 @@ export default function Board({
                       state ? `, ${state}` : ''
                     }`}
                   >
-                    {(shot === 'water' || shot === 'hit') && (
-                      <View
-                        style={[
-                          {
-                            width: markerSize,
-                            height: markerSize,
-                          },
-                          shot === 'hit'
-                            ? styles.markerHit
-                            : styles.markerWater,
-                        ]}
-                      />
+                    {shot && (
+                      <Text
+                        style={{ fontSize: markerSize, lineHeight: cellSize }}
+                        accessible={false}
+                      >
+                        {SHOT_ICON[shot]}
+                      </Text>
                     )}
+
                   </Pressable>
                 );
               })}

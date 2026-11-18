@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { usePlayerData } from './PlayerDataContext';
 
-const POLL_MS = 4000;
+const POLL_MS = 1500; //4000;
 
 // La API no avisa cuando el rival juega, así que mientras la pantalla
 // está abierta se consulta GET /api/matches/:id cada pocos segundos.

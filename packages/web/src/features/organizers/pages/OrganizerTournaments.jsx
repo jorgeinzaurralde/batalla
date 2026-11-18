@@ -21,6 +21,51 @@ export default function OrganizerTournaments({ services, user }) {
   const [inviting, setInviting] = useState(null);
   const [viewingMatches, setViewingMatches] = useState(null);
 
+  const [editing, setEditing] = useState(null);
+  const [editName, setEditName] = useState('');
+  const [editSaving, setEditSaving] = useState(false);
+  const [editError, setEditError] = useState('');
+
+  function openEdit(tournament) {
+    setEditing(tournament);
+    setEditName(tournament.name); // RF3: arranca con el nombre actual
+    setEditError('');
+  }
+
+  function closeEdit() {
+    setEditing(null); // RF6: cancelar sin guardar
+  }
+
+  async function handleEditSubmit(event) {
+    event.preventDefault();
+
+    const trimmed = editName.trim();
+    if (!trimmed) {
+      setEditError('Escribí un nombre para el torneo.');
+      return;
+    }
+    if (trimmed === editing.name) {
+      closeEdit();
+      return;
+    }
+
+    try {
+      setEditSaving(true);
+      setEditError('');
+      const updated = await service.renameTournament(editing.id, trimmed); // RF4
+      // RF5: se actualiza la lista sin recargar la página
+      setTournaments((current) =>
+        current.map((t) => (t.id === updated.id ? { ...t, ...updated } : t))
+      );
+      closeEdit();
+    } catch (err) {
+      setEditError(err.message); // RF7
+    } finally {
+      setEditSaving(false);
+    }
+  }
+
+
   function openForm() {
     setName('');
     setError('');
@@ -112,6 +157,13 @@ export default function OrganizerTournaments({ services, user }) {
             </span>
             <div className="org-card-actions">
               <button
+                className="jp-button jp-button-secondary"
+                type="button"
+                onClick={() => openEdit(tournament)}
+              >
+                Editar
+              </button>                   
+              <button
                 className="jp-button"
                 type="button"
                 onClick={() => setInviting(tournament)}
@@ -169,6 +221,45 @@ export default function OrganizerTournaments({ services, user }) {
           </form>
         </div>
       )}
+
+      {editing && (
+        <div className="org-modal-backdrop">
+          <form
+            className="org-modal"
+            onSubmit={handleEditSubmit}
+            aria-labelledby="editar-torneo-titulo"
+          >
+            <h2 id="editar-torneo-titulo">Editar torneo</h2>
+
+            <label className="org-field">
+              <span>Nombre del torneo</span>
+              <input
+                type="text"
+                value={editName}
+                onChange={(event) => setEditName(event.target.value)}
+                autoFocus
+              />
+            </label>
+
+            {editError && <p className="jp-error">{editError}</p>}
+
+            <div className="org-modal-actions">
+              <button className="jp-button" type="submit" disabled={editSaving}>
+                {editSaving ? 'Guardando…' : 'Guardar'}
+              </button>
+              <button
+                className="jp-button jp-button-secondary"
+                type="button"
+                onClick={closeEdit}
+                disabled={editSaving}
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+
 
       {inviting && (
         <InvitePlayersModal

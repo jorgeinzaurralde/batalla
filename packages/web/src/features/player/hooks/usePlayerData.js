@@ -134,7 +134,8 @@ export default function usePlayerData({
       }
 
       if (!cancelled && !stop) {
-        timeout = setTimeout(refreshMatch, 5000);
+        //timeout = setTimeout(refreshMatch, 5000);
+        timeout = setTimeout(refreshMatch, 1500);
       }
     }
 

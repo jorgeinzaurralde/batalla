@@ -56,6 +56,22 @@ export function createTournamentsService(token) {
     );
   }
 
+    async function renameTournament(tournamentId, name) {
+    return withMessages(
+      backend.patch(
+        `/api/tournaments/${encodeURIComponent(tournamentId)}`,
+        { name },
+        options
+      ),
+      {
+        400: 'No se pudo modificar el nombre: revisá que sea válido.',
+        403: 'No tenés permiso para modificar este torneo.',
+        404: 'El torneo ya no existe.',
+      }
+    );
+  }
+
+
   return {
     getTournaments,
     getTournament,
@@ -64,5 +80,6 @@ export function createTournamentsService(token) {
     getTournamentMatches,
     createMatch,
     setWinner,
+    renameTournament,
   };
 }

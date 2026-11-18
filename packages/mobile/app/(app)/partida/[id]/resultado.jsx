@@ -24,16 +24,25 @@ import useBoard from '../../../../common/player/useBoard';
 import { useAuth } from '../../../../common/auth/authContext';
 import { colors, fonts, shadow } from '../../../../common/theme';
 
+import { SHOT_ICON } from '../../../../common/shotIcons';
+
+
+const RESULT_LABEL = {
+  water: `${SHOT_ICON.water} Agua`,
+  hit: `${SHOT_ICON.hit} Tocado`,
+  sunk: `${SHOT_ICON.sunk} Hundido`,
+};
+
 const MAX_BOARD_WIDTH = 480;
 const SCREEN_PADDING = 20;
 // Lugar que ocupan el borde grueso y la sombra dura del tablero.
 const BOARD_FRAME = 3 * 2 + 4;
 
-const RESULT_LABEL = {
+/*const RESULT_LABEL = {
   water: 'Agua',
   hit: 'Tocado',
   sunk: 'Hundido',
-};
+};*/
 
 const TITLES = {
   victory: 'Victoria en el mar.',
@@ -300,8 +309,9 @@ export default function Resultado() {
                   <Text
                     style={[
                       styles.historyResult,
-                      resultOf(item) === 'Hundido' && styles.resultSunk,
-                      resultOf(item) === 'Tocado' && styles.resultHit,
+                      resultOf(item) === RESULT_LABEL.sunk && styles.resultSunk,
+                      resultOf(item) === RESULT_LABEL.hit && styles.resultHit,
+
                     ]}
                   >
                     {resultOf(item)}

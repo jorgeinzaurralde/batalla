@@ -23,16 +23,24 @@ import useBoard from '../../../../common/player/useBoard';
 import useMatchPolling from '../../../../common/player/useMatchPolling';
 import { colors, fonts, shadow } from '../../../../common/theme';
 
+import { SHOT_ICON } from '../../../../common/shotIcons';
+
+
 const MAX_BOARD_WIDTH = 480;
 const SCREEN_PADDING = 20;
 const SMALL_BOARD_SIZE = 160;
 const SMALL_GUTTER = 12;
 
 const RESULT_TEXT = {
+  water: `${SHOT_ICON.water} Agua.`,
+  hit: `${SHOT_ICON.hit} ¡Tocado!`,
+  sunk: `${SHOT_ICON.sunk} ¡Hundido!`,
+};
+/*const RESULT_TEXT = {
   water: 'Agua.',
   hit: '¡Tocado!',
   sunk: '¡Hundido!',
-};
+};*/
 
 // Mobile · Partida en curso (y "esperando rival" cuando todavía no hay disparos)
 export default function Partida() {
